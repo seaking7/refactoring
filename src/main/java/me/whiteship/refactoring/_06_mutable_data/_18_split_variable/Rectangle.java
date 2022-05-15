@@ -6,13 +6,13 @@ public class Rectangle {
     private double area;
 
     public void updateGeometry(double height, double width) {
-        double temp = 2 * (height + width);
-        System.out.println("Perimeter: " + temp);
-        perimeter = temp;
+        double temp_perimeter = 2 * (height + width);
+        System.out.println("Perimeter: " + temp_perimeter);
+        perimeter = temp_perimeter;
 
-        temp = height * width;
-        System.out.println("Area: " + temp);
-        area = temp;
+        double temp_area = height * width;
+        System.out.println("Area: " + temp_area);
+        area = temp_area;
     }
 
     public double getPerimeter() {

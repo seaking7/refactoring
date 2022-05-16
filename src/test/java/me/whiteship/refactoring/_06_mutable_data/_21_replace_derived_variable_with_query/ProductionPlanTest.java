@@ -11,7 +11,8 @@ class ProductionPlanTest {
         ProductionPlan productionPlan = new ProductionPlan();
         productionPlan.applyAdjustment(10);
         productionPlan.applyAdjustment(20);
-        assertEquals(30, productionPlan.getProduction());
+        productionPlan.applyAdjustment(30);
+        assertEquals(60, productionPlan.getProduction());
     }
 
 }

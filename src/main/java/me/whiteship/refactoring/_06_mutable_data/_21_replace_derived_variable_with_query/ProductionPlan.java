@@ -16,7 +16,7 @@ public class ProductionPlan {
     }
 
     private double calculatedProduction(){
-        return this.adjustments.stream().reduce(0d, Double::sum);
+        return this.adjustments.stream().mapToDouble(Double::valueOf).sum();
 
     }
 }

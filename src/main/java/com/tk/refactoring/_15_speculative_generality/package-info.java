@@ -1,0 +1,1 @@
+package com.tk.refactoring._15_speculative_generality;

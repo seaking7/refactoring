@@ -1,13 +1,13 @@
 package com.tk.functionalprogramming.chapter6;
 
+import com.tk.functionalprogramming.chapter6.model.Order;
+import com.tk.functionalprogramming.chapter6.model.Order.OrderStatus;
+import com.tk.functionalprogramming.chapter6.model.User;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import com.tk.functionalprogramming.chapter6.model.Order.OrderStatus;
-import com.tk.functionalprogramming.chapter6.model.Order;
-import com.tk.functionalprogramming.chapter6.model.User;
 
 public class Chapter6Section2 {
 	public static void main(String[] args) {
@@ -66,8 +66,11 @@ public class Chapter6Section2 {
 		
 		List<Order> orders = Arrays.asList(order1, order2, order3, order4, order5);
 		// TODO: Filter orders in ERROR state
+		List<Order> filteredOrder = orders.stream()
+				.filter(order -> order.getStatus() == OrderStatus.ERROR)
+				.collect(Collectors.toList());
+		System.out.println(filteredOrder);
 
-		
-		
+
 	}
 }

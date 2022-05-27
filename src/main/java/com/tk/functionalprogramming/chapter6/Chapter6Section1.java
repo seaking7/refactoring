@@ -18,6 +18,7 @@ public class Chapter6Section1 {
 		Stream<String> cityStream = Arrays.stream(cityArray);
 		List<String> cityList = cityStream.collect(Collectors.toList());
 		System.out.println(cityList);
+
 		
 		Set<Integer> numberSet = new HashSet<>(Arrays.asList(3, 5, 7));
 		Stream<Integer> numberStream = numberSet.stream();

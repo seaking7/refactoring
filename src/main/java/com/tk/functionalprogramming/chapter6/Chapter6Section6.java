@@ -1,13 +1,13 @@
 package com.tk.functionalprogramming.chapter6;
 
+import com.tk.functionalprogramming.chapter6.model.Order;
+import com.tk.functionalprogramming.chapter6.model.Order.OrderStatus;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.tk.functionalprogramming.chapter6.model.Order;
-import com.tk.functionalprogramming.chapter6.model.Order.OrderStatus;
 
 public class Chapter6Section6 {
 
@@ -47,10 +47,14 @@ public class Chapter6Section6 {
 		List<Order> orders = Arrays.asList(order1, order2, order3, order4, order5);
 		
 		// TODO: created a sorted list of unique CreatedByUserIds from the orders
+		List<Long> uniqSortedCreatedByUserId = orders.stream()
+				.map(Order::getCreatedByUserId)
+				.distinct()
+				.sorted()
+				.collect(Collectors.toList());
+		System.out.println(uniqSortedCreatedByUserId);
 
-		
-		
-		
+
 	}
 
 }

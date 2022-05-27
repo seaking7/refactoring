@@ -1,14 +1,14 @@
 package com.tk.functionalprogramming.chapter6;
 
+import com.tk.functionalprogramming.chapter6.model.Order;
+import com.tk.functionalprogramming.chapter6.model.Order.OrderStatus;
+import com.tk.functionalprogramming.chapter6.model.User;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.tk.functionalprogramming.chapter6.model.Order;
-import com.tk.functionalprogramming.chapter6.model.User;
-import com.tk.functionalprogramming.chapter6.model.Order.OrderStatus;
 
 public class Chapter6Section5 {
 
@@ -69,9 +69,12 @@ public class Chapter6Section5 {
 		List<Order> orders = Arrays.asList(order1, order2, order3, order4, order5);
 		
 		// TODO: sort the orders based on createdAt
+		List<Order> orderListCreatedAtBy = orders.stream()
+				.sorted((o1, o2) -> o1.getCreatedAt().compareTo(o2.getCreatedAt()))
+				.collect(Collectors.toList());
+		System.out.println(orderListCreatedAtBy);
 
-		
-		
+
 	}
 
 }

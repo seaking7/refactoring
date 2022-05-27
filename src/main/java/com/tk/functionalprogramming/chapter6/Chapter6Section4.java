@@ -1,15 +1,15 @@
 package com.tk.functionalprogramming.chapter6;
 
+import com.tk.functionalprogramming.chapter6.model.Order;
+import com.tk.functionalprogramming.chapter6.model.Order.OrderStatus;
+import com.tk.functionalprogramming.chapter6.model.User;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.tk.functionalprogramming.chapter6.model.Order;
-import com.tk.functionalprogramming.chapter6.model.User;
-import com.tk.functionalprogramming.chapter6.model.Order.OrderStatus;
 
 public class Chapter6Section4 {
 
@@ -66,7 +66,7 @@ public class Chapter6Section4 {
 				.setId(1004)
 				.setStatus(OrderStatus.ERROR)
 				.setCreatedByUserId(104)
-				.setCreatedAt(now.minusHours(40));
+				.setCreatedAt(now.minusHours(15));
 		Order order5 = new Order()
 				.setId(1005)
 				.setStatus(OrderStatus.IN_PROGRESS)
@@ -75,13 +75,22 @@ public class Chapter6Section4 {
 		List<Order> orders = Arrays.asList(order1, order2, order3, order4, order5);
 		
 		// TODO: Find orders in Error status, and extract createdByUserIds as a list
-		
-		
-		
+		List<Long> collect = orders.stream()
+				.filter(order -> order.getStatus() == OrderStatus.ERROR)
+				.map(order -> order.getCreatedByUserId())
+				.collect(Collectors.toList());
+
 		// TODO: Find orders in ERROR status and created within 24 hours
-		
-		
-		
+		List<Long> ordersInErrorsIn24hrs = orders.stream()
+				.filter(order -> (order.getStatus() == OrderStatus.ERROR))
+				.filter(order -> order.getCreatedAt().isAfter(now.minusHours(24)))
+				.map(Order::getCreatedByUserId)
+				.collect(Collectors.toList());
+		System.out.println(collect);
+		System.out.println(ordersInErrorsIn24hrs);
+
+
+
 	}
 
 }

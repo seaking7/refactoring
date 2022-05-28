@@ -1,5 +1,9 @@
 package com.tk.functionalprogramming.chapter8;
 
+import com.tk.functionalprogramming.chapter8.model.Order;
+import com.tk.functionalprogramming.chapter8.model.Order.OrderStatus;
+import com.tk.functionalprogramming.chapter8.model.User;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -7,10 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import com.tk.functionalprogramming.chapter8.model.User;
-import com.tk.functionalprogramming.chapter8.model.Order;
-import com.tk.functionalprogramming.chapter8.model.Order.OrderStatus;
 
 public class Chapter8Section1 {
 
@@ -83,6 +83,12 @@ public class Chapter8Section1 {
         List<Order> orders = Arrays.asList(order1, order2, order3, order4);
         
         // TODO: find order with highest amount an in ERROR status
+		Optional<BigDecimal> maxAmountError = orders.stream()
+				.filter(order -> order.getStatus() == OrderStatus.ERROR)
+				.map(Order::getAmount)
+				.max((o1, o2) -> o1.compareTo(o2));
+		System.out.println(maxAmountError.orElse(BigDecimal.ZERO));
+
 
 	}
 

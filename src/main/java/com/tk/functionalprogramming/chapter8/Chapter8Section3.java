@@ -11,7 +11,7 @@ public class Chapter8Section3 {
 			.findAny();
 		System.out.println(anyNegativeInteger.get());
 		
-		Optional<Integer> firstPositiveInteger = Stream.of(-3, -2, -5, 6)
+		Optional<Integer> firstPositiveInteger = Stream.of(3, 2, -5, 6)
 			.filter(x -> x > 0)
 			.findFirst();
 		System.out.println(firstPositiveInteger.get());

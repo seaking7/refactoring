@@ -1,12 +1,12 @@
 package com.tk.functionalprogramming.chapter8;
 
+import com.tk.functionalprogramming.chapter8.model.User;
+import com.tk.functionalprogramming.chapter8.service.EmailService;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import com.tk.functionalprogramming.chapter8.model.User;
-import com.tk.functionalprogramming.chapter8.service.EmailService;
 
 public class Chapter8Section8 {
 	public static void main(String[] args) {
@@ -45,5 +45,13 @@ public class Chapter8Section8 {
 	    for (User user: userPartitions.get(false)) {
 	    	emailService.sendMakeMoreFriendsEmail(user);
 	    }
+
+		System.out.println("---------");
+		users.stream()
+				.filter(user -> user.getFriendUserIds().size() > 5)
+				.forEach(emailService::sendPlayWithFriendsEmail);
+		users.stream()
+				.filter(user -> user.getFriendUserIds().size() <= 5)
+				.forEach(emailService::sendMakeMoreFriendsEmail);
 	}
 }

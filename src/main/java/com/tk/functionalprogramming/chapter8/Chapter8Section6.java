@@ -1,5 +1,9 @@
 package com.tk.functionalprogramming.chapter8;
 
+import com.tk.functionalprogramming.chapter8.model.Order;
+import com.tk.functionalprogramming.chapter8.model.Order.OrderStatus;
+import com.tk.functionalprogramming.chapter8.model.User;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -7,10 +11,6 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import com.tk.functionalprogramming.chapter8.model.User;
-import com.tk.functionalprogramming.chapter8.model.Order;
-import com.tk.functionalprogramming.chapter8.model.Order.OrderStatus;
 
 public class Chapter8Section6 {
 
@@ -59,6 +59,9 @@ public class Chapter8Section6 {
         List<Order> orders = Arrays.asList(order1, order2, order3, order4);
         
         // TODO: Create a map from order id to order status
+		Map<Long, OrderStatus> collect = orders.stream()
+				.collect(Collectors.toMap(Order::getId, Order::getStatus));
+		System.out.println("---"+ collect);
 
 	}
 

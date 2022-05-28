@@ -1,12 +1,12 @@
 package com.tk.functionalprogramming.chapter8;
 
+import com.tk.functionalprogramming.chapter8.model.Order;
+import com.tk.functionalprogramming.chapter8.model.OrderLine;
+import com.tk.functionalprogramming.chapter8.model.User;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-
-import com.tk.functionalprogramming.chapter8.model.User;
-import com.tk.functionalprogramming.chapter8.model.Order;
-import com.tk.functionalprogramming.chapter8.model.OrderLine;
 
 public class Chapter8Section4 {
 	public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class Chapter8Section4 {
 		System.out.println(sum);
 		
 		int min = numbers.stream()
-				.reduce((x, y) -> x > y ? x : y)
+				.reduce((x, y) -> x < y ? x : y)
 				.get();
 		System.out.println(min);
 		
@@ -72,7 +72,13 @@ public class Chapter8Section4 {
         List<Order> orders = Arrays.asList(order1, order2, order3);
         
         // TODO: find the sum of amounts
-        
-        
+		BigDecimal sumOfAmounts = orders.stream()
+				.map(Order::getOrderLines)
+				.flatMap(List::stream)
+				.map(OrderLine::getAmount)
+				.reduce(BigDecimal.ZERO, (x, y) -> x.add(y));
+		System.out.println(sumOfAmounts);
+
+
 	}
 }

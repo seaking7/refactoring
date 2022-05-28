@@ -1,12 +1,12 @@
 package com.tk.functionalprogramming.chapter8;
 
+import com.tk.functionalprogramming.chapter8.model.Order;
+import com.tk.functionalprogramming.chapter8.model.Order.OrderStatus;
+import com.tk.functionalprogramming.chapter8.model.User;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-
-import com.tk.functionalprogramming.chapter8.model.Order;
-import com.tk.functionalprogramming.chapter8.model.User;
-import com.tk.functionalprogramming.chapter8.model.Order.OrderStatus;
 
 public class Chapter8Section2 {
 
@@ -59,6 +59,9 @@ public class Chapter8Section2 {
         List<Order> orders = Arrays.asList(order1, order2, order3, order4);
         
         // TODO: check if any of orders is in ERROR status
+		boolean isAnyOrderInErrorStatus = orders.stream()
+				.anyMatch(order -> order.getStatus() == OrderStatus.ERROR);
+		System.out.println(isAnyOrderInErrorStatus);
 
 	}
 

@@ -1,14 +1,14 @@
 package com.tk.functionalprogramming.chapter8;
 
+import com.tk.functionalprogramming.chapter8.model.Order;
+import com.tk.functionalprogramming.chapter8.model.Order.OrderStatus;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import com.tk.functionalprogramming.chapter8.model.Order;
-import com.tk.functionalprogramming.chapter8.model.Order.OrderStatus;
 
 public class Chapter8Section7 {
 	public static void main(String[] args) {
@@ -45,10 +45,13 @@ public class Chapter8Section7 {
 	    List<Order> orders = Arrays.asList(order1, order2, order3, order4);
 	    
 	    // TODO: create a map form order status to the list of corresponding orders
-	    Map<OrderStatus, List<Order>> orderStatusMap;
-	    
-	    
-	    Map<OrderStatus, BigDecimal> orderStatusToSumOfAmountMap = orders.stream()
+
+		Map<OrderStatus, List<Order>> orderStatusMap = orders.stream()
+				.collect(Collectors.groupingBy(Order::getStatus));
+		System.out.println(orderStatusMap);
+
+
+		Map<OrderStatus, BigDecimal> orderStatusToSumOfAmountMap = orders.stream()
 	    		.collect(Collectors.groupingBy(Order::getStatus,
 	    				Collectors.mapping(Order::getAmount, 
 	    						Collectors.reducing(BigDecimal.ZERO, BigDecimal::add))));

@@ -1,11 +1,11 @@
 package com.tk.functionalprogramming.chapter8;
 
+import com.tk.functionalprogramming.chapter8.model.User;
+import com.tk.functionalprogramming.chapter8.service.EmailService;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.tk.functionalprogramming.chapter8.model.User;
-import com.tk.functionalprogramming.chapter8.service.EmailService;
 
 public class Chapter8Section10 {
 
@@ -41,9 +41,9 @@ public class Chapter8Section10 {
         		.setEmailAddress("frank@fastcampus.co.kr")
         		.setVerified(false);
 	    List<User> users = Arrays.asList(user1, user2, user3, user4, user5, user6);
-	    
+
+		EmailService emailService = new EmailService();
 	    long startTime = System.currentTimeMillis();
-	    EmailService emailService = new EmailService();
 	    users.stream()
 	    	.filter(user -> !user.isVerified())
 	    	.forEach(emailService::sendVerifyYourEmailEmail);

@@ -1,18 +1,19 @@
 package com.tk.functionalprogramming.chapter7;
 
-import java.util.Optional;
 import com.tk.functionalprogramming.chapter7.model.User;
+
+import java.util.Optional;
 
 public class Chapter7Section2 {
 	public static void main(String[] args) {
 		Optional<User> maybeUser = Optional.ofNullable(maybeGetUser(true));
-		maybeUser.ifPresent(user -> System.out.println(user));
+		maybeUser.ifPresent(System.out::println);
 		
 		Optional<Integer> maybeId = Optional.ofNullable(maybeGetUser(true))
 			.map(user -> user.getId());
 		maybeId.ifPresent(System.out::println);
 		
-		String userName = Optional.ofNullable(maybeGetUser(false))
+		String userName = Optional.ofNullable(maybeGetUser(true))
 			.map(User::getName)
 			.map(name -> "The name is " + name)
 			.orElse("Name is empty");
